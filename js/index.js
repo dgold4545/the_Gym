@@ -243,7 +243,6 @@ const DATA = [
   },
 ];
 
-// * Початок роботи
 const preloader = document.querySelector("#preloader");
 const originalData = [...DATA];
 const mainSection = document.querySelector(".page-main");
@@ -264,14 +263,12 @@ const creatCards = (data) => {
 };
 document.addEventListener("DOMContentLoaded", () => {
   creatCards(originalData);
-  //   preloader.remove();
 });
 const filterSidebar = document.querySelector(".sidebar");
 const sortSidebar = document.querySelector(".sorting");
 filterSidebar.removeAttribute("hidden");
 sortSidebar.removeAttribute("hidden");
 
-// * Модалка
 trainersCardsList.addEventListener("click", (e) => {
   const modalTemplate = document.querySelector("#modal-template");
   const modalTrainer = modalTemplate.content.cloneNode(true);
@@ -315,7 +312,6 @@ trainersCardsList.addEventListener("click", (e) => {
   }
 });
 
-// * Фільтрація
 const filterForm = filterSidebar.querySelector("form");
 const inputDirection = [...filterForm.querySelectorAll("[name='direction']")];
 const inputCategory = [...filterForm.querySelectorAll("[name='category']")];
@@ -362,7 +358,6 @@ filterForm.addEventListener("submit", (e) => {
   applySort();
 });
 
-// * Сортування
 const applySort = () => {
   const sortBtn = document.querySelector(".sorting__btn--active");
   if (sortBtn.textContent.trim() === "ЗА ПРІЗВИЩЕМ") {
@@ -412,7 +407,6 @@ filterForm.addEventListener("submit", (e) => {
   const translatedDirection = translation[directionInput];
   const translatedCategory = translation[categoryInput];
 
-  // Зберігаємо параметри фільтрації в localStorage
   localStorage.setItem("filteredDirection", translatedDirection);
   localStorage.setItem("filteredCategory", translatedCategory);
 
@@ -445,7 +439,6 @@ sortSidebar.addEventListener("click", (e) => {
     });
     e.target.classList.add("sorting__btn--active");
 
-    // Зберігаємо останній вибір сортування в localStorage
     localStorage.setItem("sortOption", e.target.textContent.trim());
 
     applySort();
@@ -453,7 +446,6 @@ sortSidebar.addEventListener("click", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Відновлюємо параметри фільтрації
   const savedDirection = localStorage.getItem("filteredDirection");
   const savedCategory = localStorage.getItem("filteredCategory");
   if (savedDirection && savedCategory) {
@@ -471,7 +463,6 @@ document.addEventListener("DOMContentLoaded", () => {
     categoryInput.checked = true;
   }
 
-  // Відновлюємо параметри сортування
   const savedSortOption = localStorage.getItem("sortOption");
   if (savedSortOption) {
     const sortBtns = sortSidebar.querySelectorAll(".sorting__btn");
@@ -482,12 +473,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Викликаємо applySort для застосування фільтрації та сортування
   applySort();
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Відновлюємо параметри фільтрації
   const savedDirection = localStorage.getItem("filteredDirection");
   const savedCategory = localStorage.getItem("filteredCategory");
 
@@ -505,7 +494,6 @@ document.addEventListener("DOMContentLoaded", () => {
     directionInput.checked = true;
     categoryInput.checked = true;
 
-    // Застосовуємо фільтрацію після відновлення значень
     const translatedDirection = savedDirection;
     const translatedCategory = savedCategory;
 
@@ -529,7 +517,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Відновлюємо параметри сортування
   const savedSortOption = localStorage.getItem("sortOption");
   if (savedSortOption) {
     const sortBtns = sortSidebar.querySelectorAll(".sorting__btn");
@@ -540,6 +527,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Викликаємо applySort після відновлення фільтрації та сортування
   applySort();
 });
